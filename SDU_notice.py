@@ -24,7 +24,7 @@ def get_max():
 def get_news():
     datas = []
     max = int(get_max())
-    for i in range(1, max+1):
+    for i in range(max+1, 1, -1):
         url = f'https://www.bkjx.sdu.edu.cn/index/gztz/{i}.htm'
         soup = get_soup(url)
         for unit in soup.find_all('div', class_='leftNews3'):
@@ -33,21 +33,23 @@ def get_news():
             findTime = re.compile(r'<div style="float:right;">(.*?)</div>')
             data =[]
             unit =str(unit)
-            link = re.findall(findLink, unit)[0]
-            data.append(link)
             titles = re.findall(findTitle, unit)[0]
             data.append(titles)
             times = re.findall(findTime, unit)[0]
             data.append(times)
+            link = re.findall(findLink, unit)[0]
+            data.append(link)
             datas.append(data)
     return datas
 
 
 def save_news(datas, path):
-    pass
+    full_datas = pd.DataFrame(datas)
+    full_datas.to_excel(path, index=False, header=False)
 
 
 if __name__ == '__main__':
     datas = get_news()
-    save_news(datas, 'news')
+    path = input('Set path:')
+    save_news(datas, path)
     print('Success')
