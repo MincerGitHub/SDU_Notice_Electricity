@@ -2,7 +2,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 import re
-import threading
+from concurrent.futures import ThreadPoolExecutor
 import time
 from lxml import etree
 
@@ -193,21 +193,16 @@ if __name__ == '__main__':
     list.append(input("计科学院："))
     path = input('Set target path:')
     print('loading...')
-    if list[0] == '1':
-        t0 = threading.Thread(target=benkeshengyuan())
-        thread_list.append(t0)
-    if list[1] == '1':
-        t1 = threading.Thread(target=xueshengzaixian())
-        thread_list.append(t1)
-    if list[2] == '1':
-        t2 = threading.Thread(target=qingchunshanda())
-    if list[3] == '1':
-        t3 = threading.Thread(target=jikexueyuan())
-        thread_list.append(t3)
-    for i in thread_list:
-        i.start()
-    for i in thread_list:
-        i.join()
+    with ThreadPoolExecutor(15) as executor:
+        if list[0] == '1':
+            executor.submit(benkeshengyuan)
+        if list[1] == '1':
+            executor.submit(xueshengzaixian)
+        if list[2] == '1':
+            executor.submit(qingchunshanda)
+        if list[3] == '1':
+            executor.submit(jikexueyuan)
+
     collection = []
     for i in range(0, 4):
         if list[i] == '1':
