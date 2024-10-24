@@ -2,9 +2,9 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 import re
-from concurrent.futures import ThreadPoolExecutor
 import time
 from lxml import etree
+import threading
 
 
 
@@ -66,7 +66,7 @@ def create_data(tick, url):
             links = re.findall(r'<a href="(.*?)"', unit)
             for link in links:
                 if not link.startswith('h'):
-                    link.lstrip('./')
+                    link.replace('../../','').replace('../','')
                     link = 'https://www.bkjx.sdu.edu.cn/' + link
                 data.append(link)
             data.append('本科生院')
@@ -133,22 +133,19 @@ def create_data(tick, url):
 
 def get_news(tick, maxi):
     datass = []
+    url = eval('url' + tick)
+    for data in create_data(tick, url):
+        datass.append(data)
     for i in range(2, maxi):
         if tick == '0':
-            url = url0
             urlf = f'https://www.bkjx.sdu.edu.cn/index/gztz/{i}.htm'
         elif tick == '1':
-            url = url1
             urlf = f'https://online.sdu.edu.cn/txtlist.jsp?totalpage={maxi}&PAGENUM={i}&urltype=tree.TreeTempUrl&wbtreeid=1016'
         elif tick == '2':
-            url = url2
             urlf = f'https://www.youth.sdu.edu.cn/list.jsp?totalpage={maxi}&PAGENUM={i}&urltype=tree.TreeTempUrl&wbtreeid=1004'
         elif tick == '3':
-            url = url3
             urlf = f'https://www.cs.sdu.edu.cn/bkjy/{i-1}.htm'
-        time.sleep(0.3)
-        for data in create_data(tick, url):
-            datass.append(data)
+        # time.sleep(0.3)
         for data in create_data(tick, urlf):
             datass.append(data)
     return datass
@@ -183,7 +180,6 @@ def jikexueyuan():
 
 
 if __name__ == '__main__':
-    start_time = time.time()
     list = []
     thread_list = []
     print("Press'0'means no, press'1'means yes")
@@ -193,25 +189,38 @@ if __name__ == '__main__':
     list.append(input("计科学院："))
     path = input('Set target path:')
     print('loading...')
-    with ThreadPoolExecutor(15) as executor:
-        if list[0] == '1':
-            executor.submit(benkeshengyuan)
-        if list[1] == '1':
-            executor.submit(xueshengzaixian)
-        if list[2] == '1':
-            executor.submit(qingchunshanda)
-        if list[3] == '1':
-            executor.submit(jikexueyuan)
+    start_time = time.time()
+    if list[0] == '1':
+        t0 = threading.Thread(target=benkeshengyuan())
+        thread_list.append(t0)
+    if list[1] == '1':
+        t1 = threading.Thread(target=xueshengzaixian())
+        thread_list.append(t1)
+    if list[2] == '1':
+        t2 = threading.Thread(target=qingchunshanda())
+    if list[3] == '1':
+        t3 = threading.Thread(target=jikexueyuan())
+        thread_list.append(t3)
+    for i in thread_list:
+        i.start()
+    for i in thread_list:
+        i.join()
 
     collection = []
     for i in range(0, 4):
         if list[i] == '1':
             exec(f"collection.append(pd.read_excel('./cache/{i}.xlsx'))")
     result = pd.concat(collection)
-    result.to_excel(path, index=False)
-    f = pd.read_excel(path)
-    f['time'] = pd.to_datetime(f['time'], format='%Y-%m-%d')
-    f.sort_values(by='time', inplace=True, ascending=True)
+
+    with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
+        # result['time'] = pd.to_datetime(result['time'], format='%Y-%m-%d')
+        result.sort_values(by='time', inplace=True, ascending=False)
+        result.to_excel(writer, index=False)
+        workbook = writer.book
+        worksheet = writer.sheets['Sheet1']
+        for i, col in enumerate(result.columns):
+            column_len = result[col].astype(str).str.len().max() + 1
+            worksheet.set_column(i, i, column_len)
+    end_time = time.time()
     print('Success')
-
-
+    print(end_time - start_time)
