@@ -213,10 +213,8 @@ if __name__ == '__main__':
     result = pd.concat(collection)
 
     with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
-        # result['time'] = pd.to_datetime(result['time'], format='%Y-%m-%d')
         result.sort_values(by='time', inplace=True, ascending=False)
         result.to_excel(writer, index=False)
-        workbook = writer.book
         worksheet = writer.sheets['Sheet1']
         for i, col in enumerate(result.columns):
             column_len = result[col].astype(str).str.len().max() + 1

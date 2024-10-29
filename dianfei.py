@@ -4,10 +4,10 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
-import pandas as pd
-import json
+import csv
 import urllib
 import requests
+
 
 
 def get_num():
@@ -22,17 +22,17 @@ def get_num():
         'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
         'Connection': 'keep-alive'
     }
-    # a = {
-    #     "jsondata":{ "query_elec_building": { "aid": "0030000000002505", "account": "823767", "area": {"area": "青岛校区", "areaname": "青岛校区"  } } },
-    #     "funname":"synjones.onecard.query.elec.building",
-    #     "json":"true"
-    # }                                                        换指定房间的，指定账号的
-    b = json.dumps(a)
-    data = urllib.parse.quote(b)
+    account = input('请输入账号：')
+    building_name = urllib.parse.quote(input('请输入楼名：'))
+    building_id = input('请输入楼号：')
+    room_id = input('请输入房间号：')
+    data = 'jsondata=%7B+%22query_elec_roominfo%22%3A+%7B+%22aid%22%3A%220030000000002505%22%2C+%22account%22%3A+%22'+account+'%22%2C%22room%22%3A+%7B+%22roomid%22%3A+%22'+room_id+'%22%2C+%22room%22%3A+%22'+room_id+'%22+%7D%2C++%22floor%22%3A+%7B+%22floorid%22%3A+%22%22%2C+%22floor%22%3A+%22%22+%7D%2C+%22area%22%3A+%7B+%22area%22%3A+%22%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA%22%2C+%22areaname%22%3A+%22%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA%22+%7D%2C+%22building%22%3A+%7B+%22buildingid%22%3A+%22'+building_id+'%22%2C+%22building%22%3A+%22'+building_name+'%22+%7D+%7D+%7D&funname=synjones.onecard.query.elec.roominfo&json=true'
     response = requests.post(url=url, data=data, headers=header)
     base_data = response.json()
     data = base_data["query_elec_roominfo"]["errmsg"]
     num = data[8:]
+    if not num:
+        num = "无法获取房间信息"
     return num
 
 
@@ -47,22 +47,23 @@ def send_email():
             server.starttls()
             server.login("849380859@qq.com", 'gpalxuxufqmhbbdi')
             server.sendmail("849380859@qq.com", receiver_email, msg.as_string())
+            server.quit()
         print("邮件发送成功")
     except Exception as e:
         print(f"邮件发送失败: {e}")
 
 
 def judge():
-    i = get_num()
-    df = pd.read_excel('log.xlsx')
-    new_row = {'Column1': f'{i}', 'Column2': time.ctime()}
-    df = df.append(new_row, ignore_index=True)
-    df.to_excel('example.xlsx', index=False)
+    i = float(get_num())
+    with open('log.csv','w',newline='',encoding='UTF-8') as f:
+        writer = csv.writer(f)
+        writer.writerow([i,time.ctime()])
     if i <= 10:
         send_email()
 
 
 if __name__ == '__main__':
+
     judge()
 
     schedule.every().hour.at(":00").do(judge())
