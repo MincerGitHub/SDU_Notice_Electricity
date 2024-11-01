@@ -1,3 +1,4 @@
+import os
 import requests
 import csv
 import pandas as pd
@@ -11,8 +12,6 @@ def main():
         'X-Requested-With':'XMLHttpRequest',
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
         'Accept': 'application/json, text/javascript, */*; q=0.01',
-        'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
         'Connection': 'keep-alive'
     }
     data = 'jsondata=%7B+%22query_elec_building%22%3A+%7B+%22aid%22%3A+%220030000000002505%22%2C+%22account%22%3A+%22823767%22%2C+%22area%22%3A+%7B%22area%22%3A+%22%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA%22%2C+%22areaname%22%3A+%22%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA%22++%7D+%7D+%7D&funname=synjones.onecard.query.elec.building&json=true'
@@ -32,6 +31,7 @@ def main():
         for i, col in enumerate(my_csv.columns):
             column_len = my_csv[col].astype(str).str.len().max() + 1
             worksheet.set_column(i, i, column_len)
+    os.remove('building_info.csv')
 
 
 if '__main__' == __name__:

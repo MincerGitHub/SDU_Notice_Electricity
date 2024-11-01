@@ -4,8 +4,11 @@ import requests
 import re
 import time
 from lxml import etree
-import threading
 
+import json
+from datetime import date
+import threading
+import schedule
 
 
 url0 = 'https://www.bkjx.sdu.edu.cn/index/gztz.htm'
@@ -47,7 +50,9 @@ def get_max2():
     return max
 
 def get_max3():
-    return '6'
+    tree = etree.HTML(get_html(url3))
+    max = tree.xpath('/html/body/div[4]/div/div[2]/div[3]/div/span[1]/span[8]/a/text()')[0]
+    return max
 
 
 def create_data(tick, url):
@@ -179,28 +184,30 @@ def jikexueyuan():
 
 
 
-if __name__ == '__main__':
-    list = []
+def main():
     thread_list = []
-    print("Press'0'means no, press'1'means yes")
-    list.append(input("本科生院："))
-    list.append(input("学生在线："))
-    list.append(input("青春山大："))
-    list.append(input("计科学院："))
-    path = input('Set target path:')
+    lis = ['0', '0', '0', '0']
+    with open("notice_initialize.json") as file:
+        a = json.load(file)
+    path = a['path'] + 'notice_' + str(date.today()) + '.xlsx'
+    print(path)
     print('loading...')
-    start_time = time.time()
-    if list[0] == '1':
+    if a['benkeshengyuan'] == '1':
         t0 = threading.Thread(target=benkeshengyuan())
         thread_list.append(t0)
-    if list[1] == '1':
+        lis[0] = '1'
+    if a['xueshengzaixian'] == '1':
         t1 = threading.Thread(target=xueshengzaixian())
         thread_list.append(t1)
-    if list[2] == '1':
+        lis[1] = '1'
+    if a['qingchunshanda'] == '1':
         t2 = threading.Thread(target=qingchunshanda())
-    if list[3] == '1':
+        thread_list.append(t2)
+        lis[2] = '1'
+    if a['jikexueyuan'] == '1':
         t3 = threading.Thread(target=jikexueyuan())
         thread_list.append(t3)
+        lis[3] = '1'
     for i in thread_list:
         i.start()
     for i in thread_list:
@@ -208,9 +215,10 @@ if __name__ == '__main__':
 
     collection = []
     for i in range(0, 4):
-        if list[i] == '1':
-            exec(f"collection.append(pd.read_excel('./cache/{i}.xlsx'))")
+        if lis[i] == '1':
+            exec(f"collection.append(pd.read_excel('cache/{i}.xlsx'))")
     result = pd.concat(collection)
+    lis = ['0', '0', '0', '0']
 
     with pd.ExcelWriter(path, engine='xlsxwriter') as writer:
         result.sort_values(by='time', inplace=True, ascending=False)
@@ -219,6 +227,32 @@ if __name__ == '__main__':
         for i, col in enumerate(result.columns):
             column_len = result[col].astype(str).str.len().max() + 1
             worksheet.set_column(i, i, column_len)
-    end_time = time.time()
     print('Success')
-    print(end_time - start_time)
+
+
+if __name__ == '__main__':
+
+    print("初始化：输入'0'表示否/输入'1'表示是（请在1min内完成输入）")
+    print('是否需要“本科生院,学生在线,青春山大,计科学院”的通知,并输入“路径（到目录）”（用,隔开）：')
+    try:
+        for i in range(0,2):
+            time.sleep(1)
+        print('继续进行定时保存通知')
+    except KeyboardInterrupt:
+        ans = input()
+        ans_list = ans.split(',')
+        with open('notice_initialize.json','r', encoding='utf-8') as file:
+            init = json.load(file)
+        init["benkeshengyuan"] = ans_list[0]
+        init["xueshengzaixian"] = ans_list[1]
+        init["qingchunshanda"] = ans_list[2]
+        init["jikexueyuan"] = ans_list[3]
+        init["path"] = ans_list[4]
+        with open("notice_initialize.json", "w", encoding='utf-8') as file:
+            json.dump(init, file, ensure_ascii=False, indent=4)
+
+    main()
+    schedule.every().day.at("08:00").do(main)
+    while True:
+        schedule.run_pending()
+        time.sleep(10)

@@ -1,0 +1,10 @@
+pandas
+bs4
+requests
+lxml
+datetime
+schedule
+win11toast
+twilio
+openpyxl
+xlsxwriter

@@ -1,0 +1,6 @@
+.venv
+.idea
+_pycache_
+electricity/log.csv
+electricity/building_info.xlsx
+notice/cache/*

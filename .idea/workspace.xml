@@ -5,13 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="483d10d5-8cec-4158-85e4-6d233d035ecc" name="更改" comment="大体框架（爬不到&amp;没解析）">
+      <change afterPath="$PROJECT_DIR$/electricity/tool/interrupt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/async.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/building_info.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_building_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_building_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dianfei.py" beforeDir="false" afterPath="$PROJECT_DIR$/dianfei.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sdu_notice.py" beforeDir="false" afterPath="$PROJECT_DIR$/sdu_notice.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/扒的响应.py" beforeDir="false" afterPath="$PROJECT_DIR$/扒的响应.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/0.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/1.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/2.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/3.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_building_info.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dianfei.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sdu_notice.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/扒的响应.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +27,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package.json" />
         <option value="Python Script" />
       </list>
     </option>
@@ -37,31 +44,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.SDU_notice.executor": "Run",
-    "Python._pydev_execfile.executor": "Debug",
-    "Python.asyncio.executor": "Run",
-    "Python.create_building_info.executor": "Run",
-    "Python.dianfei.executor": "Run",
-    "Python.fibo-30100-刘文洹.executor": "Run",
-    "Python.jjj.executor": "Run",
-    "Python.sdu_notice.executor": "Run",
-    "Python.send.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Python.SDU_notice.executor&quot;: &quot;Run&quot;,
+    &quot;Python._pydev_execfile.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.asyncio.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_building_info.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dianfei.executor&quot;: &quot;Run&quot;,
+    &quot;Python.duanxin.executor&quot;: &quot;Run&quot;,
+    &quot;Python.fibo-30100-刘文洹.executor&quot;: &quot;Run&quot;,
+    &quot;Python.interrupt.executor&quot;: &quot;Run&quot;,
+    &quot;Python.jjj.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.qq.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sdu_notice.executor&quot;: &quot;Run&quot;,
+    &quot;Python.send.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ways_to_remind.executor&quot;: &quot;Run&quot;,
+    &quot;Python.wechat.executor&quot;: &quot;Run&quot;,
+    &quot;Python.windows.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\84938\OneDrive\桌面\pythonProject\electricity\tool" />
+      <recent name="C:\Users\84938\OneDrive\桌面\pythonProject\electricity\" />
       <recent name="C:\Users\84938\OneDrive\桌面\" />
     </key>
   </component>
@@ -96,6 +114,11 @@
       <workItem from="1730125710025" duration="8857000" />
       <workItem from="1730135887293" duration="431000" />
       <workItem from="1730217944241" duration="13978000" />
+      <workItem from="1730283079469" duration="15777000" />
+      <workItem from="1730359533975" duration="10185000" />
+      <workItem from="1730380741350" duration="8923000" />
+      <workItem from="1730390924474" duration="16815000" />
+      <workItem from="1730467469564" duration="304000" />
     </task>
     <task id="LOCAL-00001" summary="add pandas">
       <option name="closed" value="true" />
@@ -165,16 +188,23 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/test_py$test.coverage" NAME="test 覆盖结果" MODIFIED="1729788756452" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$wechat.coverage" NAME="wechat 覆盖结果" MODIFIED="1730302593525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$test.coverage" NAME="test 覆盖结果" MODIFIED="1730394803148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/electricity" />
+    <SUITE FILE_PATH="coverage/test_py$duanxin.coverage" NAME="duanxin 覆盖结果" MODIFIED="1730302693789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1730404357307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/electricity" />
+    <SUITE FILE_PATH="coverage/test_py$create_building_info.coverage" NAME="create_building_info 覆盖结果" MODIFIED="1730386693858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/electricity" />
+    <SUITE FILE_PATH="coverage/SDU_notice_py$test.coverage" NAME="test 覆盖结果" MODIFIED="1729334607850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$send.coverage" NAME="send 覆盖结果" MODIFIED="1730231726022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$windows.coverage" NAME="windows 覆盖结果" MODIFIED="1730382174302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$_pydev_execfile.coverage" NAME="_pydev_execfile 覆盖结果" MODIFIED="1729357117909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_HOME_DIR$/plugins/python-ce/helpers/pydev/_pydev_imps" />
+    <SUITE FILE_PATH="coverage/test_py$qq.coverage" NAME="qq 覆盖结果" MODIFIED="1730302435944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test_py$fibo_30100_.coverage" NAME="fibo-30100-刘文洹 覆盖结果" MODIFIED="1729837117806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/pythonProject$SDU_notice.coverage" NAME="SDU_notice 覆盖结果" MODIFIED="1729274632522" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/SDU_notice_py$test.coverage" NAME="test 覆盖结果" MODIFIED="1729334607850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/test_py$create_building_info.coverage" NAME="create_building_info 覆盖结果" MODIFIED="1730230440516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/test_py$dianfei.coverage" NAME="dianfei 覆盖结果" MODIFIED="1730231796221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/test_py$send.coverage" NAME="send 覆盖结果" MODIFIED="1730231726022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/test_py$_pydev_execfile.coverage" NAME="_pydev_execfile 覆盖结果" MODIFIED="1729357117909" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_HOME_DIR$/plugins/python-ce/helpers/pydev/_pydev_imps" />
+    <SUITE FILE_PATH="coverage/test_py$dianfei.coverage" NAME="dianfei 覆盖结果" MODIFIED="1730398126770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/electricity" />
     <SUITE FILE_PATH="coverage/test_py$jjj.coverage" NAME="jjj 覆盖结果" MODIFIED="1730225805514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test_py$asyncio.coverage" NAME="asyncio 覆盖结果" MODIFIED="1730046842844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/test_py$sdu_notice.coverage" NAME="sdu_notice 覆盖结果" MODIFIED="1730230002807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_py$sdu_notice.coverage" NAME="sdu_notice 覆盖结果" MODIFIED="1730390005709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/notice" />
+    <SUITE FILE_PATH="coverage/test_py$ways_to_remind.coverage" NAME="ways_to_remind 覆盖结果" MODIFIED="1730400846240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/electricity" />
+    <SUITE FILE_PATH="coverage/test_py$interrupt.coverage" NAME="interrupt 覆盖结果" MODIFIED="1730401200623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/electricity/tool" />
   </component>
 </project>
