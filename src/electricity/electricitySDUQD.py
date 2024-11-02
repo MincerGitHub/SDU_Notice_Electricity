@@ -19,7 +19,7 @@ def send_mail():
         a = json.load(file)
     try:
         print('请输入接收端邮箱（用,隔开）：')
-        for i in range(0,30):
+        for i in range(0,10):
             time.sleep(1)
         print('继续进行邮件发送')
     except KeyboardInterrupt:
@@ -57,7 +57,7 @@ def send_duanxin():
         b = json.load(file)
     try:
         print('请输入接收端电话（用,隔开）：')
-        for i in range(0,30):
+        for i in range(0,10):
             time.sleep(1)
         print('继续进行短信发送')
     except KeyboardInterrupt:
@@ -133,10 +133,10 @@ if __name__ == '__main__':
 
     with open('electricity_initialize.json','r', encoding='utf-8') as file:
         init = json.load(file)
-    print("初始化：（请在1min内完成输入）")
-    print('v卡通账号,楼名,楼号,房间号,是否停止监控：')
+    print("初始化：")
+    print('v卡通账号,楼名,楼号,房间号,是否停止监控（按ctrl+c开始输入）：')
     try:
-        for i in range(0,60):
+        for i in range(0,10):
             time.sleep(1)
         print('继续进行监控电费')
     except KeyboardInterrupt:
@@ -144,13 +144,14 @@ if __name__ == '__main__':
         ans_list = ans.split(',')
 
         init["info"]["account"] = ans_list[0]
-        init["info"]["building_name"] = urllib.parse.quote(ans_list[1])
-        init["info"]["building"] = ans_list[2]
+        # init["info"]["building_name"] = urllib.parse.quote(ans_list[1])
+        init["info"]["building_name"] = ans_list[1]
+        init["info"]["building_id"] = ans_list[2]
         init["info"]["room_id"] = ans_list[3]
         init["sleep"] = ans_list[4]
         with open("electricity_initialize.json", "w", encoding='utf-8') as file:
             json.dump(init, file, ensure_ascii=False, indent=4)
-        print('设置成功')
+        print('设置成功，继续进行监控电费')
 
     cache = []
     main()

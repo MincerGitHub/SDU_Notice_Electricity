@@ -4,4 +4,3 @@ _pycache_
 src/electricity/log.csv
 src/electricity/building_info.xlsx
 src/notice/*.xlsx
-src/notice/cache/*.xlsx
