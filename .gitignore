@@ -3,4 +3,5 @@
 _pycache_
 electricity/log.csv
 electricity/building_info.xlsx
-notice/cache/*
+notice/*.xlsx
+notice/cache/*.xlsx

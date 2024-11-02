@@ -2,13 +2,10 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 import re
-import time
 from lxml import etree
-
 import json
 from datetime import date
 import threading
-import schedule
 
 
 url0 = 'https://www.bkjx.sdu.edu.cn/index/gztz.htm'
@@ -97,14 +94,14 @@ def create_data(tick, url):
             datas.append(data)
         return datas
     elif tick == '2':
-        tree = etree.HTML(get_html(url2))
+        tree = etree.HTML(get_html(url))
         for i in range(1, 21):
             data = []
             a = tree.xpath(f'/html/body/div[2]/div[2]/div[2]/ul/li[{i}]/div/span/text()')
             b = tree.xpath(f'/html/body/div[2]/div[2]/div[2]/ul/li[{i}]/div/p/text()')
             time = '-'.join(a + b)
             data.append(time)
-            title = tree.xpath(f'/html/body/div[2]/div[2]/div[2]/ul/li[{i}]/a/text()')
+            title = tree.xpath(f'/html/body/div[2]/div[2]/div[2]/ul/li[{i}]/a/text()')[0]
             title = title
             data.append(title)
             link = tree.xpath(f'/html/body/div[2]/div[2]/div[2]/ul/li[{i}]/a/@href')[0]
@@ -150,7 +147,6 @@ def get_news(tick, maxi):
             urlf = f'https://www.youth.sdu.edu.cn/list.jsp?totalpage={maxi}&PAGENUM={i}&urltype=tree.TreeTempUrl&wbtreeid=1004'
         elif tick == '3':
             urlf = f'https://www.cs.sdu.edu.cn/bkjy/{i-1}.htm'
-        # time.sleep(0.3)
         for data in create_data(tick, urlf):
             datass.append(data)
     return datass
@@ -189,8 +185,7 @@ def main():
     lis = ['0', '0', '0', '0']
     with open("notice_initialize.json") as file:
         a = json.load(file)
-    path = a['path'] + 'notice_' + str(date.today()) + '.xlsx'
-    print(path)
+    path = a['path'] + 'all_notice_' + str(date.today()) + '.xlsx'
     print('loading...')
     if a['benkeshengyuan'] == '1':
         t0 = threading.Thread(target=benkeshengyuan())
@@ -232,27 +227,4 @@ def main():
 
 if __name__ == '__main__':
 
-    print("初始化：输入'0'表示否/输入'1'表示是（请在1min内完成输入）")
-    print('是否需要“本科生院,学生在线,青春山大,计科学院”的通知,并输入“路径（到目录）”（用,隔开）：')
-    try:
-        for i in range(0,2):
-            time.sleep(1)
-        print('继续进行定时保存通知')
-    except KeyboardInterrupt:
-        ans = input()
-        ans_list = ans.split(',')
-        with open('notice_initialize.json','r', encoding='utf-8') as file:
-            init = json.load(file)
-        init["benkeshengyuan"] = ans_list[0]
-        init["xueshengzaixian"] = ans_list[1]
-        init["qingchunshanda"] = ans_list[2]
-        init["jikexueyuan"] = ans_list[3]
-        init["path"] = ans_list[4]
-        with open("notice_initialize.json", "w", encoding='utf-8') as file:
-            json.dump(init, file, ensure_ascii=False, indent=4)
-
     main()
-    schedule.every().day.at("08:00").do(main)
-    while True:
-        schedule.run_pending()
-        time.sleep(10)

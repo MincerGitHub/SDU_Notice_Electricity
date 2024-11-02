@@ -1,7 +1,8 @@
 {
-    "benkeshengyuan": "0",
-    "xueshengzaixian": "0",
-    "qingchunshanda": "0",
+    "benkeshengyuan": "1",
+    "xueshengzaixian": "1",
+    "qingchunshanda": "1",
     "jikexueyuan": "1",
-    "path": ""
+    "path": "",
+    "sleep": "0"
 }
