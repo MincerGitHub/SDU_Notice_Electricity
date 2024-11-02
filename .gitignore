@@ -1,7 +1,7 @@
 .venv
 .idea
 _pycache_
-electricity/log.csv
-electricity/building_info.xlsx
-notice/*.xlsx
-notice/cache/*.xlsx
+src/electricity/log.csv
+src/electricity/building_info.xlsx
+src/notice/*.xlsx
+src/notice/cache/*.xlsx
